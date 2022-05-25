@@ -1,20 +1,54 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomePageController!{% endblock %}
+{% block title %}Semi-Forma !
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+	<h1>Bienvenue sur Semi-Forma !</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'O:/_Dev/_CDA/Symfoni/SemiForma/src/Controller/HomePageController.php'|file_link(0) }}">src/Controller/HomePageController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'O:/_Dev/_CDA/Symfoni/SemiForma/templates/home_page/index.html.twig'|file_link(0) }}">templates/home_page/index.html.twig</a></code></li>
-    </ul>
-</div>
+	<div class="card-group">
+		<div class="card">
+			<div class="card-body">
+				<h5 class="card-title">Promotions</h5>
+				<div class="card-text">
+					<p class="bigNumber">{{nombrePromotions}}</p>
+					<p>
+						promotions nous ont été confiés
+					</p>
+				</div>
+			</div>
+			<div class="card-footer cardFooter">
+				<small class="text-muted">{{ block("indexPromotionButton", 'buttons.html.twig') }}</small>
+			</div>
+		</div>
+		<div class="card">
+			<div class="card-body">
+				<h5 class="card-title">Nos partenaires</h5>
+				<div class="card-text">
+					<p class="bigNumber">{{nombreOrganismes}}</p>
+					<p>
+						OF nous font confiance
+					</p>
+				</div>
+			</div>
+			<div class="card-footer cardFooter">
+				<small class="text-muted">{{ block("indexOrganismeButton", 'buttons.html.twig') }}</small>
+			</div>
+		</div>
+		<div class="card">
+			<div class="card-body">
+				<h5 class="card-title">Candidats</h5>
+				<div class="card-text">
+					<p class="bigNumber">{{nombreCandidats}}</p>
+					<p>
+						C'est le nombre de candidats que nous formons
+					</p>
+				</div>
+			</div>
+			<div class="card-footer cardFooter">
+				<small class="text-muted">{{ block("indexCandidatButton", 'buttons.html.twig') }}</small>
+			</div>
+		</div>
+	</div>
 {% endblock %}

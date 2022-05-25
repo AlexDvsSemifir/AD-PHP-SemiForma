@@ -1,0 +1,35 @@
+{# Vers les formulaires #}
+
+{% block newSessionButton %}
+    <a role='button' class="btn btn-info" href="{{ path('app_session_new') }}"> Nouvelle Session </a>
+{% endblock %}
+{% block newSalleButton %}
+    <a role='button' class="btn btn-info" href="{{ path('app_salle_new') }}">Nouvelle salle</a>
+{% endblock %}
+{% block newFormateurButton %}
+    <a role='button' class="btn btn-info" href="{{ path('app_formateur_new') }}">Nouveau formateur</a>
+{% endblock %}
+{% block newFormationButton %}
+    <a role='button' class="btn btn-info" href="{{ path('app_formation_new') }}">Nouvelle formation</a>
+{% endblock %}
+{% block newCandidatButton %}
+    <a role='button' class="btn btn-info" href="{{ path('app_candidat_new') }}">Nouveau candidat</a>
+{% endblock %}
+{% block newOrganismeButton %}
+    <a role='button' class="btn btn-info" href="{{ path('app_organisme_new') }}">Nouvel organisme</a>
+{% endblock %}
+{% block newPromotionButton %}
+    <a role='button' class="btn btn-info" href="{{ path('app_promotion_new') }}">Nouvelle promotion</a>
+{% endblock %}
+
+{# Vers les composants #}
+
+{% block indexPromotionButton %}
+    <a role='button' class="btn btn-info" href="{{ path('app_promotion_index') }}">Promotions</a>
+{% endblock %}
+{% block indexOrganismeButton %}
+    <a role='button' class="btn btn-info" href="{{ path('app_organisme_index') }}">Organismes</a>
+{% endblock %}
+{% block indexCandidatButton %}
+    <a role='button' class="btn btn-info" href="{{ path('app_candidat_index') }}">Candidats</a>
+{% endblock %}

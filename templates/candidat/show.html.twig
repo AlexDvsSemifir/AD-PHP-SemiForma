@@ -23,6 +23,14 @@
                 <th>Tel</th>
                 <td>{{ candidat.tel }}</td>
             </tr>
+            <tr>
+                <th>Promotion</th>
+                {% if candidat.promotion %}
+                <td>{{ candidat.promotion.nom }}</td>
+                {% else %}
+                <td><em>-</em></td>
+                {% endif %}
+            </tr>
         </tbody>
     </table>
 

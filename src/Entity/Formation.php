@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\FormationRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: FormationRepository::class)]
@@ -21,8 +23,13 @@ class Formation
     private $organisme;
 
 
-    #[ORM\OneToMany(mappedBy: 'promotion', targetEntity: Promotion::class)]
-    private $promotion;
+    #[ORM\OneToMany(mappedBy: 'formation', targetEntity: Promotion::class)]
+    private $promotions;
+
+    public function __construct()
+    {
+        $this->promotions = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -53,14 +60,14 @@ class Formation
         return $this;
     }
 
-    public function getPromotion(): ?Promotion
+    public function getPromotions(): Collection
     {
-        return $this->promotion;
+        return $this->promotions;
     }
 
     public function setPromotion(Promotion $promotion): self
     {
-        $this->promotion = $promotion;
+        $this->promotions = $promotion;
 
         return $this;
     }

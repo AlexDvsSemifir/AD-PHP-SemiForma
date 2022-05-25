@@ -1,39 +1,48 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Candidats{% endblock %}
+{% block title %}Candidats
+{% endblock %}
 
 {% block body %}
-    <h1>Candidats</h1>
+	<h1>Candidats</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Prenom</th>
-                <th>Mail</th>
-                <th>Tel</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for candidat in candidats %}
-            <tr>
-                <td>{{ candidat.nom }}</td>
-                <td>{{ candidat.prenom }}</td>
-                <td>{{ candidat.mail }}</td>
-                <td>{{ candidat.tel }}</td>
-                <td>
-                    <a class='btn btn-primary' role='button' href="{{ path('app_candidat_show', {'id': candidat.id}) }}">Détails</a>
-                    <a class='btn btn-primary' role='button' href="{{ path('app_candidat_edit', {'id': candidat.id}) }}">Modifier</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Nom Prénom</th>
+				<th>Promotion</th>
+				<th>Mail</th>
+				<th>Tel</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for candidat in candidats %}
+				<tr>
+					<td>{{ candidat.nom }}, {{ candidat.prenom }}</td>
+					{% if candidat.promotion  %}
+						<td>
+							<a href="{{path('app_promotion_show', {'id': candidat.promotion.id})}}">
+								{{ candidat.promotion.nom}}
+							</a>
+						</td>
+					{% else %}
+						<td>Aucune</td>
+					{% endif %}
+					<td>{{ candidat.mail }}</td>
+					<td>{{ candidat.tel }}</td>
+					<td>
+						<a class='btn btn-primary' role='button' href="{{ path('app_candidat_show', {'id': candidat.id}) }}">Détails</a>
+						<a class='btn btn-primary' role='button' href="{{ path('app_candidat_edit', {'id': candidat.id}) }}">Modifier</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="6">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 
-    <a class='btn btn-primary' role='button' href="{{ path('app_candidat_new') }}">Nouveau</a>
+	<a class='btn btn-primary' role='button' href="{{ path('app_candidat_new') }}">Nouveau</a>
 {% endblock %}

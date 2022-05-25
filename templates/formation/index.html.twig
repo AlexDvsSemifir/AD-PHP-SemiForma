@@ -10,6 +10,7 @@
             <tr>
                 <th>Intitule</th>
                 <th>OF</th>
+                <th>Nb promotions</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -18,6 +19,7 @@
             <tr>
                 <td>{{ formation.intitule }}</td>
                 <td><a href="{{path('app_organisme_show', {'id': formation.organisme.id})}}">{{formation.organisme}}<a/></td>
+                <td>{{ formation.promotions | length }}</td>
                 <td>
                     <a class='btn btn-primary' role='button' href="{{ path('app_formation_show', {'id': formation.id}) }}">Détails</a>
                     <a class='btn btn-primary' role='button' href="{{ path('app_formation_edit', {'id': formation.id}) }}">Modifier</a>
@@ -28,6 +30,7 @@
                 <td colspan="3">no records found</td>
             </tr>
         {% endfor %}
+
         </tbody>
     </table>
 

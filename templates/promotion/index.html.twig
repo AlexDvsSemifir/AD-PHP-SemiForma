@@ -9,13 +9,19 @@
         <thead>
             <tr>
                 <th>Nom</th>
-                <th>actions</th>
+                <th>Nombre Candidats</th>
+                <th>Formateur référent</th>
+                <th>Sessions restantes</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for promotion in promotions %}
             <tr>
                 <td>{{ promotion.nom }}</td>
+                <td>{{ promotion.candidats | length }}</td>
+                <td>{{ promotion.formateurReferent }}</td>
+                <td>{{ promotion.sessions | length }}</td>
                 <td>
                     <a class='btn btn-primary' role='button' href="{{ path('app_promotion_show', {'id': promotion.id}) }}">Détails</a>
                     <a class='btn btn-primary' role='button' href="{{ path('app_promotion_edit', {'id': promotion.id}) }}">Modifier</a>

@@ -1,4 +1,16 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
-    <button class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
+    <thead>
+	<tr>
+		<th>
+			{{ block("newFormationButton", 'buttons.html.twig') }}
+		</th>
+		<th>
+			{{ block("newFormateurButton", 'buttons.html.twig') }}
+		</th>
+	</tr>
+</thead>
+<div>
+	<button class="btn btn-success">{{ button_label|default('Enregistrer') }}</button>
+</div>
 {{ form_end(form) }}
