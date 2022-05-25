@@ -1,34 +1,46 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Session{% endblock %}
+{% block title %}Session
+{% endblock %}
 
 {% block body %}
-    <h1>Session</h1>
+	<h1>Session</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ session.id }}</td>
-            </tr>
-            <tr>
-                <th>Date_debut</th>
-                <td>{{ session.dateDebut ? session.dateDebut|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Date_fin</th>
-                <td>{{ session.dateFin ? session.dateFin|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ session.nom }}</td>
-            </tr>
-        </tbody>
-    </table>
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Nom</th>
+				<td>{{ session.nom }}</td>
+			</tr>
+			<tr>
+				<th>Dates</th>
+				<td>Du
+					{{ session.dateDebut ? session.dateDebut|date('Y-m-d') : '' }}
+					au
+					{{ session.dateFin ? session.dateFin|date('Y-m-d') : '' }}</td>
+			</tr>
+			<tr>
+				<th>Promotion</th>
+				<td>
+					<a href={{ url('app_promotion_show', {id: session.promotion.id} )}}>{{session.promotion}}</a>
+				</td>
+			</tr>
+			{% if session.salle %}
+                {% for item in session.salle %}
+				<tr>
+					<th>Salle</th>
+					<td>
+						<a href={{ url('app_salle_show', {id: item.id} )}}>{{item.nom}}
+					</td>
+				</tr>
+                {% endfor %}
+			{% endif %}
+		</tbody>
+	</table>
 
-    <a href="{{ path('app_session_index') }}">back to list</a>
+	<a class='btn btn-primary' role='button' href="{{ path('app_session_index') }}">Retour</a>
 
-    <a href="{{ path('app_session_edit', {'id': session.id}) }}">edit</a>
+	<a class='btn btn-primary' role='button' href="{{ path('app_session_edit', {'id': session.id}) }}">Modifier</a>
 
-    {{ include('session/_delete_form.html.twig') }}
+	{{ include('session/_delete_form.html.twig') }}
 {% endblock %}

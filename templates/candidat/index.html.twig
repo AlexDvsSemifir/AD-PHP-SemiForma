@@ -1,32 +1,30 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Candidat index{% endblock %}
+{% block title %}Candidats{% endblock %}
 
 {% block body %}
-    <h1>Candidat index</h1>
+    <h1>Candidats</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Nom</th>
                 <th>Prenom</th>
                 <th>Mail</th>
                 <th>Tel</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for candidat in candidats %}
             <tr>
-                <td>{{ candidat.id }}</td>
                 <td>{{ candidat.nom }}</td>
                 <td>{{ candidat.prenom }}</td>
                 <td>{{ candidat.mail }}</td>
                 <td>{{ candidat.tel }}</td>
                 <td>
-                    <a href="{{ path('app_candidat_show', {'id': candidat.id}) }}">show</a>
-                    <a href="{{ path('app_candidat_edit', {'id': candidat.id}) }}">edit</a>
+                    <a class='btn btn-primary' role='button' href="{{ path('app_candidat_show', {'id': candidat.id}) }}">Détails</a>
+                    <a class='btn btn-primary' role='button' href="{{ path('app_candidat_edit', {'id': candidat.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
@@ -37,5 +35,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_candidat_new') }}">Create new</a>
+    <a class='btn btn-primary' role='button' href="{{ path('app_candidat_new') }}">Nouveau</a>
 {% endblock %}

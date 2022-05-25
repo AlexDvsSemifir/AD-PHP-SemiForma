@@ -14,7 +14,7 @@ Application simple qui a pour but de gérer les formations.
 
 ## Démarrer le projet
 
-- Dans bdd : `docker-compose up -d`
+- Dans `./bdd` : `docker-compose up -d`
 - A la racine :
   - `npm i` : pour installer les dépendances
   - `npm run --watch` : pour lancer le serveur

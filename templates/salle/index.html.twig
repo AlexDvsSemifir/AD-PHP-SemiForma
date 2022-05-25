@@ -1,35 +1,60 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Salle index{% endblock %}
+{% block title %}Salle index
+{% endblock %}
 
 {% block body %}
-    <h1>Salle index</h1>
+	<h1>Salle index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for salle in salles %}
-            <tr>
-                <td>{{ salle.id }}</td>
-                <td>{{ salle.nom }}</td>
-                <td>
-                    <a href="{{ path('app_salle_show', {'id': salle.id}) }}">show</a>
-                    <a href="{{ path('app_salle_edit', {'id': salle.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_salle_new') }}">Create new</a>
-{% endblock %}
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Nom</th>
+				<th>Prochaine session</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for salle in salles %}
+				<tr>
+					<td>{{ salle.nom }}</td>
+					{% if salle.sessions | length > 0 %}
+						<td>
+							<ul>
+								{% for session in salle.sessions %}
+									{# N'affiche la session dans la salle que si la date de fin n'est pas dépassée #}
+									{% set dateMax = date("now") | date_modify("+5 day") %}
+									{% if session.dateFin > dateMax %}
+										<li>
+											<a href={{ url('app_session_show', {id: session.id} )}}>
+                                                ({{session.promotion.formation.organisme}} |
+												{{session.promotion.nom}})
+												:
+												{{ session.nom }}
+												du
+												{{session.dateDebut | date('d/m/y') }}
+												au
+												{{session.dateFin | date('d/m/y') }}</a>
+										</li>
+									{% endif %}
+								{% endfor %}
+							</ul>
+						</td>
+					{% else %}
+						<td>
+							<li>Aucune session</li>
+						</td>
+					{% endif %}
+					<td>
+						<a class='btn btn-primary' role='button' href="{{ path('app_salle_show', {'id': salle.id}) }}">Détails</a>
+						<a class='btn btn-primary' role='button' href="{{ path('app_salle_edit', {'id': salle.id}) }}">Modifier</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="3">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</tr>
+</tbody></tbody></table><a class='btn btn-primary' role='button' href="{{ path('app_salle_new') }}">Nouveau</a>{% endblock %}

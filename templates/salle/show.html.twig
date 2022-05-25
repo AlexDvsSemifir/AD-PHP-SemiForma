@@ -1,26 +1,49 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Salle{% endblock %}
+{% block title %}Salle
+{% endblock %}
 
 {% block body %}
-    <h1>Salle</h1>
+	<h1>Salle</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ salle.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ salle.nom }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_salle_index') }}">back to list</a>
-
-    <a href="{{ path('app_salle_edit', {'id': salle.id}) }}">edit</a>
-
-    {{ include('salle/_delete_form.html.twig') }}
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Nom</th>
+				<td>Prochaines sessions</td>
+			</tr>
+			{% if salle.sessions | length > 0 %}
+				{% for session in salle.sessions  %}
+					{% if session.dateFin > date("now") %}
+						<tr>
+							<td>
+                            <a href={{ url('app_promotion_show', {id: session.promotion.id}) }}>{{ session.promotion.nom }}</a>
+                            
+                            </td>
+							<td>
+								<ul>
+									{# N'affiche la session dans la salle que si la date de fin n'est pas dépassée #}
+									<li>
+										<a href={{ url('app_session_show', {id: session.id} )}}>
+											{{ session.nom }}
+											du
+											{{session.dateDebut | date('d/m/y') }}
+											au
+											{{session.dateFin | date('d/m/y') }}</a>
+									</li>
+								{% endif %}
+							{% endfor %}
+						</tr>
+					</td>
+				</tr>
+			</ul>
+		</tbody>
+	</td>
+{% else %}
+	<td>
+		<li>Aucune session</li>
+	</td>
+{% endif %}</tr></tbody></tbody></table>
+<a class='btn btn-primary' role='button' href="{{ path('app_salle_index') }}">Retour</a>
+<a class='btn btn-primary' role='button' href="{{ path('app_salle_edit', {'id': salle.id}) }}">Modifier</a>{{ include('salle/_delete_form.html.twig') }}
 {% endblock %}

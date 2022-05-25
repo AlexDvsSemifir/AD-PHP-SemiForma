@@ -13,7 +13,6 @@ class SalleType extends AbstractType
     {
         $builder
             ->add('nom')
-            ->add('sessions')
         ;
     }
 

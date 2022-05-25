@@ -8,7 +8,6 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Nom</th>
                 <th>Adresse</th>
                 <th>Tel</th>
@@ -19,14 +18,13 @@
         <tbody>
         {% for organisme in organismes %}
             <tr>
-                <td>{{ organisme.id }}</td>
                 <td>{{ organisme.nom }}</td>
                 <td>{{ organisme.adresse }}</td>
                 <td>{{ organisme.tel }}</td>
                 <td>{{ organisme.mail }}</td>
                 <td>
-                    <a href="{{ path('app_organisme_show', {'id': organisme.id}) }}">show</a>
-                    <a href="{{ path('app_organisme_edit', {'id': organisme.id}) }}">edit</a>
+                    <a class='btn btn-primary' role='button' href="{{ path('app_organisme_show', {'id': organisme.id}) }}">Détails</a>
+                    <a class='btn btn-primary' role='button' href="{{ path('app_organisme_edit', {'id': organisme.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
@@ -37,5 +35,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_organisme_new') }}">Create new</a>
+    <a class='btn btn-primary' role='button' href="{{ path('app_organisme_new') }}">Nouveau</a>
 {% endblock %}
