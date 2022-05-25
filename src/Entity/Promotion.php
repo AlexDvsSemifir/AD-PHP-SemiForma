@@ -18,7 +18,7 @@ class Promotion
     #[ORM\Column(type: 'string', length: 255)]
     private $nom;
 
-    #[ORM\OneToOne(targetEntity: Formation::class, cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne(targetEntity: Formation::class, inversedBy: 'promotion' ,cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private $formation;
 

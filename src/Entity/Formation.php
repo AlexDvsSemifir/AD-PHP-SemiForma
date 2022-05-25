@@ -20,6 +20,10 @@ class Formation
     #[ORM\JoinColumn(nullable: false)]
     private $organisme;
 
+
+    #[ORM\OneToMany(mappedBy: 'promotion', targetEntity: Promotion::class)]
+    private $promotion;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -45,6 +49,18 @@ class Formation
     public function setOrganisme(Organisme $organisme): self
     {
         $this->organisme = $organisme;
+
+        return $this;
+    }
+
+    public function getPromotion(): ?Promotion
+    {
+        return $this->promotion;
+    }
+
+    public function setPromotion(Promotion $promotion): self
+    {
+        $this->promotion = $promotion;
 
         return $this;
     }
