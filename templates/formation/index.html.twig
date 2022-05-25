@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Formation index{% endblock %}
+{% block title %}Formations{% endblock %}
 
 {% block body %}
     <h1>Formations</h1>
@@ -9,13 +9,15 @@
         <thead>
             <tr>
                 <th>Intitule</th>
-                <th>actions</th>
+                <th>OF</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for formation in formations %}
             <tr>
                 <td>{{ formation.intitule }}</td>
+                <td><a href="{{path('app_organisme_show', {'id': formation.organisme.id})}}">{{formation.organisme}}<a/></td>
                 <td>
                     <a class='btn btn-primary' role='button' href="{{ path('app_formation_show', {'id': formation.id}) }}">Détails</a>
                     <a class='btn btn-primary' role='button' href="{{ path('app_formation_edit', {'id': formation.id}) }}">Modifier</a>

@@ -23,6 +23,22 @@
                 <th>Tel</th>
                 <td>{{ formateur.tel }}</td>
             </tr>
+            <tr>
+                <th>Sessions à venir</th>
+                <td>
+                    <ul>
+                        {% for session in formateur.sessions %}
+                            {% if session.dateFin > date("now") %}
+                            <li>
+                            <a href={{ url('app_session_show', {id: session.id} )}}>
+                            {{ session.nom }} : {{session.dateDebut | date('d/m/y')}} au {{session.dateFin | date('d/m/y')}}
+                            </a>
+                            </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
         </tbody>
     </table>
 

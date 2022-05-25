@@ -16,7 +16,6 @@ class FormateurType extends AbstractType
             ->add('prenom')
             ->add('mail')
             ->add('tel')
-            ->add('sessions')
         ;
     }
 
